@@ -11,7 +11,7 @@ const Product = db.define('product', {
     allowNull: false
   },
   size: {
-    type: Sequelize.FLOAT
+    type: Sequelize.ARRAY(Sequelize.FLOAT)
   },
   gender: {
     type: Sequelize.ENUM('Male', 'Female')
