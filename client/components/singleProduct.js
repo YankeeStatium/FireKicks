@@ -4,12 +4,6 @@ import {selectedProductsThunk} from '../store/products'
 import {Link} from 'react-router-dom'
 
 class SingleProduct extends Component {
-  constructor() {
-    super()
-    //     this.state = {
-    //         selectedProduct: null
-    //     }
-  }
   async componentDidMount() {
     const id = this.props.match.params.id
     this.props.fetchProduct(id)
@@ -23,6 +17,8 @@ class SingleProduct extends Component {
           <h1>{selectedProduct.name}</h1>
           <h2>Brand: {selectedProduct.brand}</h2>
           <img src={selectedProduct.imageUrl} />
+          <br />
+          <button type="button">Add to Cart</button>
           <h3>Gender: {selectedProduct.gender}</h3>
           <h3>Sizes: {selectedProduct.size.join(', ')}</h3>
         </div>
