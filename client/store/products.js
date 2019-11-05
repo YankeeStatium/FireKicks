@@ -4,13 +4,13 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
-const GET_PRODUCTS = 'GET_USER'
+const GET_PRODUCTS = 'GET_PRODUCTS'
 const SELECTED_PRODUCT = 'SELECTED_PRODUCT'
 const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 
 const initialState = {
   products: [],
-  selected_product: null
+  selectedProduct: []
 }
 
 /*
@@ -21,10 +21,13 @@ const getProducts = products => ({
   products
 })
 
-const selectedProduct = product => ({
-  type: SELECTED_PRODUCT,
-  product
-})
+const selectedProduct = product => {
+  //console.log('PRODUCT', product)
+  return {
+    type: SELECTED_PRODUCT,
+    product
+  }
+}
 
 const removeProduct = productId => ({
   type: REMOVE_PRODUCT,
@@ -47,12 +50,14 @@ export const selectedProductsThunk = productId => {
   return async dispatch => {
     try {
       const {data} = await axios.get(`/api/product/${productId}`)
+      console.log('My data', data)
       dispatch(selectedProduct(data))
     } catch (err) {
       console.log('ERROR RETRIEVING SINGLE PRODUCT', err)
     }
   }
 }
+//console.log('THUNK ==>', selectedProductsThunk(2)())
 
 export const removeProductThunk = productId => {
   return async dispatch => {
@@ -70,7 +75,7 @@ export default function(state = initialState, action) {
     case GET_PRODUCTS:
       return {...state, products: action.products}
     case SELECTED_PRODUCT:
-      return {...state, selected_product: action.product}
+      return {...state, selectedProduct: action.product}
     case REMOVE_PRODUCT:
       return {
         ...state,
