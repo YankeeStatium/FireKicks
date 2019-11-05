@@ -1,42 +1,37 @@
 const db = require('../server/db')
 
-const {User, Product} = require('../server/db/models')
+const {User, Product, Order} = require('../server/db/models')
 
 const users = [
   {
     email: 'mikemcmanus95@gmail.com',
     name: 'Michael',
     password: 'password',
-    gender: 'Male',
-    cart: []
+    gender: 'Male'
   },
   {
     email: 'dennismcmanus95@gmail.com',
     name: 'Dennis',
     password: 'password',
-    gender: 'Male',
-    cart: []
+    gender: 'Male'
   },
   {
     email: 'tausifsemail@gmail.com',
     name: 'Tausif',
     password: 'password',
-    gender: 'Male',
-    cart: []
+    gender: 'Male'
   },
   {
     email: 'marcos@gmail.com',
     name: 'Marcos',
     password: 'password',
-    gender: 'Male',
-    cart: []
+    gender: 'Male'
   },
   {
     email: 'linda@beautiful.com',
     name: 'Linda',
     password: 'password',
-    gender: 'Female',
-    cart: []
+    gender: 'Female'
   }
 ]
 
@@ -85,6 +80,17 @@ const seed = async () => {
       return Product.create(product)
     })
   )
+
+  const user = await User.findByPk(2)
+
+  const order = await user.createOrder()
+
+  let product = await Product.findByPk(2)
+
+  await order.addProduct(product)
+
+  product = await Product.findByPk(3)
+  await order.addProduct(product)
 
   console.log('Seeding success!')
   db.close()
