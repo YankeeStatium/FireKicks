@@ -24,9 +24,6 @@ const User = db.define('user', {
     type: Sequelize.ENUM('Male', 'Female'),
     allowNull: false
   },
-  cart: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER)
-  },
   salt: {
     type: Sequelize.STRING,
     // Making `.salt` act like a function hides it when serializing to JSON.
