@@ -15,10 +15,10 @@ class Products extends Component {
       <div id="products">
         {products.map(product => (
           <div className="product" key={product.id}>
-            <Link to={`/product/${product.id}`}>
+            <Link to={`/products/${product.id}`}>
               <h3>{product.name}</h3>
             </Link>
-            <Link to={`/product/${product.id}`}>
+            <Link to={`/products/${product.id}`}>
               <img src={product.imageUrl} />
             </Link>
           </div>

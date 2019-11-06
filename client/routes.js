@@ -21,14 +21,14 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/products" component={Products} />
+        <Route exact path="/" component={Products} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route exact path="/product/:id" component={singleProduct} />
+        <Route exact path="/products/:id" component={singleProduct} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
+            <Route path="/profile" component={UserHome} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
