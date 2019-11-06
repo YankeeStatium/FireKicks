@@ -16,6 +16,9 @@ const Product = db.define('product', {
   gender: {
     type: Sequelize.ENUM('Male', 'Female')
   },
+  price: {
+    type: Sequelize.INTEGER
+  },
   imageUrl: {
     type: Sequelize.STRING,
     defaultValue: 'http://clipart-library.com/images/E8T6M78iE.jpg'

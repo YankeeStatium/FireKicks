@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {selectedProductsThunk} from '../store/products'
+import {selectedProductsThunk, addToCart} from '../store/products'
 import {Link} from 'react-router-dom'
 
 class SingleProduct extends Component {
@@ -8,6 +8,11 @@ class SingleProduct extends Component {
     const id = this.props.match.params.id
     this.props.fetchProduct(id)
   }
+
+  handleClick(id) {
+    this.props.addToCart(id)
+  }
+
   render() {
     const selectedProduct = this.props.selectedProduct
     //Checking for an id works better because an empty obj would still be truthy
@@ -21,7 +26,12 @@ class SingleProduct extends Component {
           <h2>Brand: {selectedProduct.brand}</h2>
           <img src={selectedProduct.imageUrl} />
           <br />
-          <button type="button">Add to Cart</button>
+          <button
+            onClick={() => this.handleClick(selectedProduct.id)}
+            type="button"
+          >
+            Add to Cart
+          </button>
           <h3>Gender: {selectedProduct.gender}</h3>
           <h3>Sizes: {selectedProduct.size.join(', ')}</h3>
         </div>
@@ -37,7 +47,8 @@ const productMapStateToProps = state => ({
 })
 
 const productMapDispacthToProps = dispatch => ({
-  fetchProduct: id => dispatch(selectedProductsThunk(id))
+  fetchProduct: id => dispatch(selectedProductsThunk(id)),
+  addToCart: id => dispatch(addToCart(id))
 })
 
 const connectSingleProduct = connect(
