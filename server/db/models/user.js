@@ -9,8 +9,7 @@ const User = db.define('user', {
     allowNull: false
   },
   name: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.STRING
   },
   password: {
     type: Sequelize.STRING,
@@ -21,8 +20,7 @@ const User = db.define('user', {
     }
   },
   gender: {
-    type: Sequelize.ENUM('Male', 'Female'),
-    allowNull: false
+    type: Sequelize.ENUM('Male', 'Female')
   },
   salt: {
     type: Sequelize.STRING,
