@@ -11,6 +11,9 @@ class SingleProduct extends Component {
   render() {
     const selectedProduct = this.props.selectedProduct
     //Checking for an id works better because an empty obj would still be truthy
+    if (selectedProduct === null) {
+      return <h1>No shoes for you!</h1>
+    }
     if (selectedProduct.id) {
       return (
         <div className="single_component">
@@ -23,7 +26,6 @@ class SingleProduct extends Component {
           <h3>Sizes: {selectedProduct.size.join(', ')}</h3>
         </div>
       )
-      // }
     } else {
       return 'Loading'
     }
