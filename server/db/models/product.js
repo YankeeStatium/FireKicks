@@ -17,7 +17,8 @@ const Product = db.define('product', {
     type: Sequelize.ENUM('Male', 'Female')
   },
   imageUrl: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    defaultValue: 'http://clipart-library.com/images/E8T6M78iE.jpg'
   }
 })
 
