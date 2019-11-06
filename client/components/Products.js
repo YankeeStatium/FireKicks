@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {getProductsThunk} from '../store/products'
 import {Link} from 'react-router-dom'
 
-class Products extends Component {
+export class Products extends Component {
   componentDidMount() {
     this.props.getProducts()
   }
