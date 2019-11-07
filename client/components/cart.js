@@ -9,14 +9,24 @@ export const Cart = props => {
       {cart.length === 0 ? (
         <h3>Your cart is empty. </h3>
       ) : (
-        <div className="cartItem">
+        <div className="cart">
           {cart.map(shoe => (
-            <div key={shoe.id}>
-              <h1>{shoe.name}</h1>
-              <h2>{shoe.quantity}</h2>
-              <img src={shoe.imageUrl} />
-              <button>Remove From Cart</button>
-              <button>Checkout</button>
+            <div className="cartItem" key={shoe.id}>
+              <h4>{shoe.name}</h4>
+              <div>
+                <h4>
+                  Price: ${shoe.price / 100} Quantity: {shoe.quantity}
+                </h4>
+              </div>
+              <img className="cartImg" src={shoe.imageUrl} />
+              <div>
+                <button className="button" type="submit">
+                  Remove From Cart
+                </button>
+                <button className="button" type="submit">
+                  Checkout
+                </button>
+              </div>
             </div>
           ))}
         </div>
