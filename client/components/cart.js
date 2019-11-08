@@ -1,5 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import {Checkout} from './Checkout'
 
 export const Cart = props => {
   const cart = props.cart
@@ -23,9 +25,11 @@ export const Cart = props => {
                 <button className="button" type="submit">
                   Remove From Cart
                 </button>
-                <button className="button" type="submit">
-                  Checkout
-                </button>
+                <Link to="/checkout">
+                  <button className="button" type="submit">
+                    Checkout
+                  </button>
+                </Link>
               </div>
             </div>
           ))}
