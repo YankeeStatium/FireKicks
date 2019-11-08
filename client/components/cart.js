@@ -2,7 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 export const Cart = props => {
-  const cart = props.cart
+  console.log('CART PROPS>>>>>', props)
+  const cart = props.cart.items
+  const total = props.cart.total
 
   return (
     <div id="cart">
@@ -29,6 +31,7 @@ export const Cart = props => {
               </div>
             </div>
           ))}
+          <h4>Total: ${total}</h4>
         </div>
       )}
     </div>
