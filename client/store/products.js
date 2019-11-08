@@ -7,13 +7,10 @@ import history from '../history'
 const GET_PRODUCTS = 'GET_PRODUCTS'
 const SELECTED_PRODUCT = 'SELECTED_PRODUCT'
 const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
-const ADD_TO_CART = 'ADD_TO_CART'
 
 const initialState = {
   products: [],
-  selectedProduct: [],
-  cart: [],
-  total: 0
+  selectedProduct: {}
 }
 
 /*
@@ -36,14 +33,6 @@ const removeProduct = productId => ({
   type: REMOVE_PRODUCT,
   productId
 })
-
-export const addToCart = productId => {
-  console.log('ADDED ITEM', productId)
-  return {
-    type: ADD_TO_CART,
-    productId
-  }
-}
 
 //Thunk Creators
 export const getProductsThunk = () => {
@@ -87,27 +76,6 @@ export default function(state = initialState, action) {
       return {...state, products: action.products}
     case SELECTED_PRODUCT:
       return {...state, selectedProduct: action.product}
-    case ADD_TO_CART: {
-      let addedItem = state.products.find(item => item.id === action.productId)
-      let duplicate = state.cart.find(item => action.productId === item.id)
-
-      if (duplicate) {
-        addedItem.quantity += 1
-        return {
-          ...state,
-          total: state.total + addedItem.price
-        }
-      } else {
-        addedItem.quantity = 1
-        let newTotal = state.total + addedItem.price
-
-        return {
-          ...state,
-          cart: [...state.cart, addedItem],
-          total: newTotal
-        }
-      }
-    }
     case REMOVE_PRODUCT:
       return {
         ...state,

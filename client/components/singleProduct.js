@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {selectedProductsThunk, addToCart} from '../store/products'
+import {selectedProductsThunk} from '../store/products'
+import {addToCart, addToCartThunk} from '../store/cart'
 import {Link} from 'react-router-dom'
 
 class SingleProduct extends Component {
@@ -48,7 +49,7 @@ const productMapStateToProps = state => ({
 
 const productMapDispacthToProps = dispatch => ({
   fetchProduct: id => dispatch(selectedProductsThunk(id)),
-  addToCart: id => dispatch(addToCart(id))
+  addToCart: id => dispatch(addToCartThunk(id))
 })
 
 const connectSingleProduct = connect(
