@@ -4,9 +4,10 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {me} from './store'
-import singleProduct from './components/singleProduct'
+import singleProduct from './components/SingleProduct'
 import Products from './components/Products'
-import Cart from './components/cart'
+import Cart from './components/Cart'
+import {Checkout} from './components/Checkout'
 
 /**
  * COMPONENT
@@ -27,6 +28,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />
         <Route exact path="/products/:id" component={singleProduct} />
+        <Route path="/checkout" component={Checkout} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
