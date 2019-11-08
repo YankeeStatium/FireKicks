@@ -10,8 +10,8 @@ class SingleProduct extends Component {
     this.props.fetchProduct(id)
   }
 
-  handleClick(id) {
-    this.props.addToCart(id)
+  handleClick(selectedProduct) {
+    this.props.addToCart(selectedProduct)
   }
 
   render() {
@@ -28,7 +28,7 @@ class SingleProduct extends Component {
           <img src={selectedProduct.imageUrl} />
           <br />
           <button
-            onClick={() => this.handleClick(selectedProduct.id)}
+            onClick={() => this.handleClick(selectedProduct)}
             type="button"
           >
             Add to Cart
@@ -47,14 +47,14 @@ const productMapStateToProps = state => ({
   selectedProduct: state.products.selectedProduct
 })
 
-const productMapDispacthToProps = dispatch => ({
+const productMapDispatchToProps = dispatch => ({
   fetchProduct: id => dispatch(selectedProductsThunk(id)),
-  addToCart: id => dispatch(addToCartThunk(id))
+  addToCart: selectedProduct => dispatch(addToCartThunk(selectedProduct))
 })
 
 const connectSingleProduct = connect(
   productMapStateToProps,
-  productMapDispacthToProps
+  productMapDispatchToProps
 )(SingleProduct)
 
 export default connectSingleProduct

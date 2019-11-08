@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {addToCartThunk} from '../store/cart'
 
 export const Cart = props => {
-  console.log('CART PROPS>>>>>', props)
   const cart = props.cart.items
   const total = props.cart.total
 
@@ -31,7 +31,7 @@ export const Cart = props => {
               </div>
             </div>
           ))}
-          <h4>Total: ${total}</h4>
+          <h4>Total: ${total / 100}</h4>
         </div>
       )}
     </div>
@@ -39,7 +39,7 @@ export const Cart = props => {
 }
 
 const mapStateToProps = state => ({
-  cart: state.products.cart
+  cart: state.cart
 })
 
 export default connect(mapStateToProps, null)(Cart)

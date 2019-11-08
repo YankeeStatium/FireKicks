@@ -50,7 +50,6 @@ export const selectedProductsThunk = productId => {
   return async dispatch => {
     try {
       const {data} = await axios.get(`/api/product/${productId}`)
-      console.log('My data', data)
       dispatch(selectedProduct(data))
     } catch (err) {
       console.log('ERROR RETRIEVING SINGLE PRODUCT', err)

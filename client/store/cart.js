@@ -13,10 +13,9 @@ export const addToCart = product => ({
   product
 })
 
-export const addToCartThunk = productId => {
-  return (dispatch, getState) => {
-    const {products} = getState()
-    dispatch(addToCart(products.selectedProduct))
+export const addToCartThunk = selectedProduct => {
+  return dispatch => {
+    dispatch(addToCart(selectedProduct))
   }
 }
 
@@ -26,7 +25,6 @@ export default function(state = initialState, action) {
       let addedItem = action.product
       let duplicate = state.items.find(item => action.product.id === item.id)
 
-      console.log('THIS IS THE ITEM YOU"RE ADDING', addedItem)
       if (duplicate) {
         addedItem.quantity += 1
         return {
