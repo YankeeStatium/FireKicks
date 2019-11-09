@@ -2,37 +2,45 @@ import axios from 'axios'
 import history from '../history'
 
 const initialState = {
-  order: {}
+  pendingOrder: {}
 }
 
 //ACTION TYPES
-const ADD_ORDER = 'GET_ORDERS'
+const GET_PENDING_ORDER = 'GET_PENDING_ORDER'
 
 //ACTION CREATOR
-const addOrder = order => ({
-  type: ADD_ORDER,
+const getPendingOrder = order => ({
+  type: GET_PENDING_ORDER,
   order
 })
 
 //THUNK CREATORS
-const addOrderThunk = (status, id) => {
-  return async dispatch => {
+export const getPendingOrderThunk = () => {
+  return async (dispatch, getState) => {
     try {
-      const {data} = await axios.post(`./api/users/${id}/order`, {
-        status,
-        id
-      })
-      dispatch(addOrder(data))
+      let {user} = getState()
+      const {data} = await axios.get(`./api/users/${user.id}/order`)
+      dispatch(getPendingOrder(data))
     } catch (error) {
-      next(error)
+      console.error('Order could not be found')
+    }
+  }
+}
+
+export const addOrderThunk = userId => {
+  return async (dispatch, getState) => {
+    try {
+      await axios.post(`./api/users/${userId}/order`)
+    } catch (error) {
+      console.error('Order could not be added')
     }
   }
 }
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case ADD_ORDER:
-      return {...state, order: action.order}
+    case GET_PENDING_ORDER:
+      return {...state, pendingOrder: action.order}
     default:
       return state
   }

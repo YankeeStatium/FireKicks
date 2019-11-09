@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {updateStatusThunk} from '../store/cart'
+import {updateStatusThunk, removeFromCartThunk} from '../store/cart'
 import {Link} from 'react-router-dom'
 
 export const Cart = props => {
@@ -8,6 +8,7 @@ export const Cart = props => {
   const total = props.cart.total
   const changeStatus = props.changeStatus
   const userId = props.userId
+  const removeItem = props.removeItem
 
   return (
     <div id="cart">
@@ -25,7 +26,11 @@ export const Cart = props => {
               </div>
               <img className="cartImg" src={shoe.imageUrl} />
               <div>
-                <button className="button" type="submit">
+                <button
+                  onClick={() => removeItem(shoe.id)}
+                  className="button"
+                  type="submit"
+                >
                   Remove From Cart
                 </button>
                 <Link to="/checkout">
@@ -52,7 +57,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  changeStatus: id => dispatch(updateStatusThunk(id))
+  changeStatus: id => dispatch(updateStatusThunk(id)),
+  removeItem: productId => dispatch(removeFromCartThunk(productId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)

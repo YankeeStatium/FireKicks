@@ -16,7 +16,8 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:id', async (req, res, next) => {
+//GET PENDING ORDER FOR USER
+router.get('/:id/order', async (req, res, next) => {
   try {
     const orders = await Order.findOne({
       where: {
@@ -48,6 +49,8 @@ router.put('/:id/order', async (req, res, next) => {
     next(err)
   }
 })
+
+//GET PENDING ORDERS FOR USER
 
 //CREATE ORDER
 router.post('/:id/order', async (req, res, next) => {
