@@ -4,9 +4,9 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {me} from './store'
-import singleProduct from './components/SingleProduct'
+import SingleProduct from './components/singleProduct'
 import Products from './components/Products'
-import Cart from './components/Cart'
+import Cart from './components/cart'
 import {Checkout} from './components/Checkout'
 
 /**
@@ -27,7 +27,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />
-        <Route exact path="/products/:id" component={singleProduct} />
+        <Route exact path="/products/:id" component={SingleProduct} />
         <Route path="/checkout" component={Checkout} />
         {isLoggedIn && (
           <Switch>
