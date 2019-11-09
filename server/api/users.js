@@ -30,3 +30,34 @@ router.get('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+//UPDATE ORDER STATUS
+router.put('/:id/order', async (req, res, next) => {
+  try {
+    const orders = await Order.update(
+      {status: 'Completed'},
+      {
+        where: {
+          userId: req.params.id,
+          status: 'Pending'
+        }
+      }
+    )
+    res.json(orders)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//CREATE ORDER
+router.post('/:id/order', async (req, res, next) => {
+  try {
+    const order = await Order.create({
+      status: 'Pending',
+      userId: req.params.id
+    })
+    res.json(order)
+  } catch (err) {
+    next(err)
+  }
+})
