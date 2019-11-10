@@ -16,17 +16,30 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//CREATE ORDER
+// router.post('/:id/order', async (req, res, next) => {
+//   try {
+//     const order = await Order.create({
+//       status: 'Pending',
+//       userId: req.params.id
+//     })
+//     res.json(order)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
+
 //GET PENDING ORDER FOR USER
 router.get('/:id/order', async (req, res, next) => {
   try {
-    const orders = await Order.findOne({
+    const orders = await Order.findOrCreate({
       where: {
         userId: req.params.id,
         status: 'Pending'
       },
       include: [{model: Product}]
     })
-    res.json(orders)
+    res.json(orders[0])
   } catch (err) {
     next(err)
   }
@@ -51,16 +64,3 @@ router.put('/:id/order', async (req, res, next) => {
 })
 
 //GET PENDING ORDERS FOR USER
-
-//CREATE ORDER
-router.post('/:id/order', async (req, res, next) => {
-  try {
-    const order = await Order.create({
-      status: 'Pending',
-      userId: req.params.id
-    })
-    res.json(order)
-  } catch (err) {
-    next(err)
-  }
-})

@@ -7,8 +7,8 @@ import {Link} from 'react-router-dom'
 
 class SingleProduct extends Component {
   componentDidMount() {
-    const id = this.props.match.params.id
-    this.props.fetchProduct(id)
+    const prodId = this.props.match.params.id
+    this.props.fetchProduct(prodId)
     this.props.getPendingOrder()
   }
 
@@ -18,7 +18,7 @@ class SingleProduct extends Component {
     const pendingOrder = this.props.pendingOrder
     pendingOrder.userId
       ? console.log('Pending Order already exists for this User')
-      : this.props.addOrder()
+      : this.props.addOrder(this.props.userId)
   }
 
   render() {
