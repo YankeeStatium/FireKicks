@@ -25,17 +25,17 @@ export const Cart = props => {
                 <button
                   type="button"
                   className="button"
-                  onClick={() => props.removeItem(shoe.id)}
+                  onClick={() => props.removeItem(shoe)}
                 >
                   Remove
-                </button>
-                <button className="button" type="submit">
-                  Checkout
                 </button>
               </div>
             </div>
           ))}
           <h4>Total: ${total / 100}</h4>
+          <button className="button" type="submit">
+            Checkout
+          </button>
         </div>
       )}
     </div>
@@ -47,7 +47,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  removeItem: id => dispatch(removeFromCartThunk(id))
+  removeItem: shoe => dispatch(removeFromCartThunk(shoe))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
