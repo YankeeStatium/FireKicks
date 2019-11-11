@@ -16,7 +16,7 @@ export const addToCart = product => ({
 
 //Thunk Creators
 export const addToCartThunk = selectedProduct => {
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch(addToCart(selectedProduct))
   }
 }
@@ -25,7 +25,7 @@ export const updateStatusThunk = id => {
   return async (dispatch, getState) => {
     try {
       let {user} = getState()
-      await axios.put(`/api/users/${user.id}/order`, {})
+      await axios.put(`/api/users/${id}/order`, {})
     } catch (error) {
       console.error('ORDER CANNOT BE UPDATED')
     }

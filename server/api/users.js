@@ -16,6 +16,19 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//CREATE ORDER
+// router.post('/:id/order', async (req, res, next) => {
+//   try {
+//     const order = await Order.create({
+//       status: 'Pending',
+//       userId: req.params.id
+//     })
+//     res.json(order)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
+
 //GET PENDING ORDER FOR USER
 router.get('/:id/order', async (req, res, next) => {
   try {

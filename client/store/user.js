@@ -7,10 +7,16 @@ import history from '../history'
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
 /**
  * INITIAL STATE
  */
-const defaultUser = {}
+const defaultUser = {id: getRandomInt(1000, 1300), email: 'guest@guest.com'}
 
 /**
  * ACTION CREATORS

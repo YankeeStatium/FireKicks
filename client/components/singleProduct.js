@@ -3,13 +3,13 @@ import {connect} from 'react-redux'
 import {selectedProductsThunk} from '../store/products'
 import {addToCartThunk} from '../store/cart'
 import {addOrderThunk, getPendingOrderThunk} from '../store/orders'
+import {cartLocal} from './cart'
 import {Link} from 'react-router-dom'
 
 class SingleProduct extends Component {
   componentDidMount() {
-    const id = this.props.match.params.id
-    this.props.fetchProduct(id)
-    this.props.getPendingOrder()
+    const prodId = this.props.match.params.id
+    this.props.fetchProduct(prodId)
   }
 
   onClick(selectedProduct) {
