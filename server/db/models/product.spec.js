@@ -13,7 +13,7 @@ describe('Product model', () => {
     let shoe = {
       name: 'Nike SB',
       brand: 'Nike',
-      gender: 'Male'
+      gender: 'Men'
     }
     let product
 

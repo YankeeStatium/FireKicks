@@ -15,7 +15,7 @@ describe('Product routes', () => {
       name: 'Running casual',
       brand: 'Nike',
       size: [6, 7, 8, 9],
-      gender: 'Female',
+      gender: 'Women',
       imageUrl: null
     }
 
@@ -43,7 +43,7 @@ describe('Product routes', () => {
           name: 'Running casual',
           brand: 'Nike',
           size: [6, 7, 8, 9],
-          gender: 'Female',
+          gender: 'Women',
           imageUrl: null
         },
         {
@@ -51,7 +51,7 @@ describe('Product routes', () => {
           name: 'Running formal',
           brand: 'Reebook',
           size: [6, 7, 8, 9],
-          gender: 'Female',
+          gender: 'Women',
           imageUrl: null
         },
         {
@@ -59,7 +59,7 @@ describe('Product routes', () => {
           name: 'Just running',
           brand: 'Puma',
           size: [6, 7, 8, 9],
-          gender: 'Female',
+          gender: 'Women',
           imageUrl: null
         }
       ].map(data => Product.create(data))
