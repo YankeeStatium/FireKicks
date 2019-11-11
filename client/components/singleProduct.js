@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {selectedProductsThunk} from '../store/products'
 import {addToCartThunk} from '../store/cart'
 import {addOrderThunk, getPendingOrderThunk} from '../store/orders'
+import {cartLocal} from './cart'
 import {Link} from 'react-router-dom'
 
 class SingleProduct extends Component {
@@ -14,6 +15,7 @@ class SingleProduct extends Component {
 
   onClick(selectedProduct) {
     this.props.addToCart(selectedProduct)
+    // Adding selected product to local storage cart
 
     const pendingOrder = this.props.pendingOrder
     pendingOrder.userId
