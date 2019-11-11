@@ -9,7 +9,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
     <h1>#FireKicks</h1>
     <nav>
       {isLoggedIn ? (
-        <div>
+        <div className="nav">
           {/* The navbar will show these links after you log in */}
           <Link to="/">All Products</Link>
           <Link to="/profile">My Profile</Link>
@@ -19,7 +19,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/cart">Cart</Link>
         </div>
       ) : (
-        <div>
+        <div className="nav">
           {/* The navbar will show these links before you log in */}
           <Link to="/">All Products</Link>
           <Link to="/login">Login</Link>

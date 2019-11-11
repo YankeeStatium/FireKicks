@@ -14,14 +14,15 @@ const Product = db.define('product', {
     type: Sequelize.ARRAY(Sequelize.FLOAT)
   },
   gender: {
-    type: Sequelize.ENUM('Male', 'Female')
+    type: Sequelize.ENUM('Men', 'Women')
   },
   price: {
     type: Sequelize.INTEGER
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: 'http://clipart-library.com/images/E8T6M78iE.jpg'
+    defaultValue:
+      'https://cdn1.shoebacca.com/catalog/product/3/6/368151-02_1l.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700'
   }
 })
 

@@ -1,6 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {updateStatusThunk, removeFromCartThunk} from '../store/cart'
+import {
+  addToCartThunk,
+  updateStatusThunk,
+  removeFromCartThunk
+} from '../store/cart'
 import {Link} from 'react-router-dom'
 
 export const Cart = props => {
@@ -11,7 +15,7 @@ export const Cart = props => {
 
   return (
     <div id="cart">
-      {cart.length === 0 ? (
+      {cart.length === 0 || cart.length === undefined ? (
         <h3>Your cart is empty. </h3>
       ) : (
         <div className="cart">
@@ -25,22 +29,26 @@ export const Cart = props => {
               </div>
               <img className="cartImg" src={shoe.imageUrl} />
               <div>
-                <button className="button" type="submit">
-                  Remove From Cart
+                <button
+                  type="button"
+                  className="button"
+                  onClick={() => props.removeItem(shoe)}
+                >
+                  Remove
                 </button>
-                <Link to="/checkout">
-                  <button
-                    className="button"
-                    type="submit"
-                    onClick={() => changeStatus(userId)}
-                  >
-                    Checkout
-                  </button>
-                </Link>
               </div>
             </div>
           ))}
           <h4>Total: ${total / 100}</h4>
+          <Link to="/checkout">
+            <button
+              className="button"
+              type="submit"
+              onClick={() => changeStatus(userId)}
+            >
+              Checkout
+            </button>
+          </Link>
         </div>
       )}
     </div>
@@ -52,7 +60,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  changeStatus: id => dispatch(updateStatusThunk(id))
+  changeStatus: id => dispatch(updateStatusThunk(id)),
+  removeItem: shoe => dispatch(removeFromCartThunk(shoe))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)

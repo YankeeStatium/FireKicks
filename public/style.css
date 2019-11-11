@@ -10,8 +10,10 @@ label {
   display: block;
 }
 
-nav a {
-  display: inline-block;
+.nav {
+  display: flex;
+  justify-content: space-around;
+  /* height: 80px; */
   margin: 1em;
 }
 
@@ -24,3 +26,10 @@ form div {
   width: 200px;
   height: 200px;
 }
+/* #products {
+  display: flex; */
+/* flex-wrap: wrap;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+} */

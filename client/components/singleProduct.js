@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {selectedProductsThunk} from '../store/products'
-import {addToCartThunk} from '../store/cart'
+import {addToCart, addToCartThunk, removeFromCartThunk} from '../store/cart'
 import {addOrderThunk, getPendingOrderThunk} from '../store/orders'
 import {cartLocal} from './cart'
 import {Link} from 'react-router-dom'
+//import Button from 'react-bootstrap/Button'
 
 class SingleProduct extends Component {
   componentDidMount() {
@@ -12,7 +13,7 @@ class SingleProduct extends Component {
     this.props.fetchProduct(prodId)
   }
 
-  onClick(selectedProduct) {
+  handleClick(selectedProduct) {
     this.props.addToCart(selectedProduct)
     this.props.addOrder(this.props.userId)
   }
@@ -32,7 +33,11 @@ class SingleProduct extends Component {
           <h2>Brand: {selectedProduct.brand}</h2>
           <img src={selectedProduct.imageUrl} />
           <br />
-          <button onClick={() => this.onClick(selectedProduct)} type="button">
+          <button
+            type="button"
+            className="button"
+            onClick={() => this.handleClick(selectedProduct)}
+          >
             Add to Cart
           </button>
           <h3>Gender: {selectedProduct.gender}</h3>
