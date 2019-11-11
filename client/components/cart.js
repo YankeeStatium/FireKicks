@@ -1,10 +1,17 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {addToCartThunk, removeFromCartThunk} from '../store/cart'
+import {
+  addToCartThunk,
+  updateStatusThunk,
+  removeFromCartThunk
+} from '../store/cart'
+import {Link} from 'react-router-dom'
 
 export const Cart = props => {
   const cart = props.cart.items
   const total = props.cart.total
+  const changeStatus = props.changeStatus
+  const userId = props.userId
 
   return (
     <div id="cart">
@@ -29,6 +36,15 @@ export const Cart = props => {
                 >
                   Remove
                 </button>
+                <Link to="/checkout">
+                  <button
+                    className="button"
+                    type="submit"
+                    onClick={() => changeStatus(userId)}
+                  >
+                    Checkout
+                  </button>
+                </Link>
               </div>
             </div>
           ))}
@@ -41,12 +57,13 @@ export const Cart = props => {
     </div>
   )
 }
-
 const mapStateToProps = state => ({
-  cart: state.cart
+  cart: state.cart,
+  userId: state.user.id
 })
 
 const mapDispatchToProps = dispatch => ({
+  changeStatus: id => dispatch(updateStatusThunk(id)),
   removeItem: shoe => dispatch(removeFromCartThunk(shoe))
 })
 
