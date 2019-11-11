@@ -8,14 +8,27 @@ const initialState = {
   total: 0
 }
 
+//Action Creators
 export const addToCart = product => ({
   type: ADD_TO_CART,
   product
 })
 
+//Thunk Creators
 export const addToCartThunk = selectedProduct => {
   return dispatch => {
     dispatch(addToCart(selectedProduct))
+  }
+}
+
+export const updateStatusThunk = id => {
+  return async (dispatch, getState) => {
+    try {
+      let {user} = getState()
+      await axios.put(`/api/users/${user.id}/order`, {})
+    } catch (error) {
+      console.error('ORDER CANNOT BE UPDATED')
+    }
   }
 }
 
@@ -43,6 +56,6 @@ export default function(state = initialState, action) {
       }
     }
     default:
-      return state
+      return {...state}
   }
 }
