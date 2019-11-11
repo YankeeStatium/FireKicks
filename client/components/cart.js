@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {addToCartThunk} from '../store/cart'
+import {removeFromCart} from '../store/cart'
 
 export const Cart = props => {
   const cart = props.cart.items
@@ -42,4 +43,8 @@ const mapStateToProps = state => ({
   cart: state.cart
 })
 
-export default connect(mapStateToProps, null)(Cart)
+const mapDispatchToProps = dispatch => ({
+  removeItem: product => dispatch(removeFromCart(product))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

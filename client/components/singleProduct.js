@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {selectedProductsThunk} from '../store/products'
 import {addToCart, addToCartThunk} from '../store/cart'
 import {Link} from 'react-router-dom'
+//import Button from 'react-bootstrap/Button'
 
 class SingleProduct extends Component {
   async componentDidMount() {
@@ -28,8 +29,9 @@ class SingleProduct extends Component {
           <img src={selectedProduct.imageUrl} />
           <br />
           <button
-            onClick={() => this.handleClick(selectedProduct)}
             type="button"
+            className="button"
+            onClick={() => this.handleClick(selectedProduct)}
           >
             Add to Cart
           </button>
