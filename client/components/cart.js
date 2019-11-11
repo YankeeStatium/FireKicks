@@ -36,22 +36,19 @@ export const Cart = props => {
                 >
                   Remove
                 </button>
-                <Link to="/checkout">
-                  <button
-                    className="button"
-                    type="submit"
-                    onClick={() => changeStatus(userId)}
-                  >
-                    Checkout
-                  </button>
-                </Link>
               </div>
             </div>
           ))}
           <h4>Total: ${total / 100}</h4>
-          <button className="button" type="submit">
-            Checkout
-          </button>
+          <Link to="/checkout">
+            <button
+              className="button"
+              type="submit"
+              onClick={() => changeStatus(userId)}
+            >
+              Checkout
+            </button>
+          </Link>
         </div>
       )}
     </div>
