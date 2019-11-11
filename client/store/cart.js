@@ -14,14 +14,14 @@ export const addToCart = product => ({
   product
 })
 
-export const removeFromCart = product => ({
+export const removeFromCart = id => ({
   type: REMOVE_FROM_CART,
-  product
+  id
 })
 
-export const removeFromCartThunk = selectedProduct => {
+export const removeFromCartThunk = id => {
   return dispatch => {
-    dispatch(removeFromCart(selectedProduct))
+    dispatch(removeFromCart(id))
   }
 }
 
@@ -55,14 +55,17 @@ export default function(state = initialState, action) {
       }
     }
     case REMOVE_FROM_CART:
-      return state.items
-        .map(
-          item =>
-            item.id === action.product.id
-              ? {...item, quantity: item.quantity - 1}
-              : item
-        )
-        .filter(item => item.quantity > 0)
+      return {
+        ...state,
+        items: state.items
+          .map(
+            item =>
+              item.id === action.id
+                ? {...item, quantity: item.quantity - 1}
+                : item
+          )
+          .filter(item => item.quantity > 0)
+      }
     default:
       return state
   }

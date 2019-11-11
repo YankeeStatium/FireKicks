@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {addToCartThunk} from '../store/cart'
-import {removeFromCart} from '../store/cart'
+import {addToCartThunk, removeFromCartThunk} from '../store/cart'
 
 export const Cart = props => {
   const cart = props.cart.items
@@ -9,7 +8,7 @@ export const Cart = props => {
 
   return (
     <div id="cart">
-      {cart.length === 0 ? (
+      {cart.length === 0 || cart.length === undefined ? (
         <h3>Your cart is empty. </h3>
       ) : (
         <div className="cart">
@@ -23,8 +22,12 @@ export const Cart = props => {
               </div>
               <img className="cartImg" src={shoe.imageUrl} />
               <div>
-                <button className="button" type="submit">
-                  Remove From Cart
+                <button
+                  type="button"
+                  className="button"
+                  onClick={() => props.removeItem(shoe.id)}
+                >
+                  Remove
                 </button>
                 <button className="button" type="submit">
                   Checkout
@@ -44,7 +47,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  removeItem: product => dispatch(removeFromCart(product))
+  removeItem: id => dispatch(removeFromCartThunk(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)

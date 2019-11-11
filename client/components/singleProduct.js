@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {selectedProductsThunk} from '../store/products'
-import {addToCart, addToCartThunk} from '../store/cart'
+import {addToCart, addToCartThunk, removeFromCartThunk} from '../store/cart'
 import {Link} from 'react-router-dom'
 //import Button from 'react-bootstrap/Button'
 
