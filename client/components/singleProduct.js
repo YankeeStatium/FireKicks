@@ -10,17 +10,11 @@ class SingleProduct extends Component {
   componentDidMount() {
     const prodId = this.props.match.params.id
     this.props.fetchProduct(prodId)
-    this.props.getPendingOrder()
   }
 
   onClick(selectedProduct) {
     this.props.addToCart(selectedProduct)
-    // Adding selected product to local storage cart
-
-    const pendingOrder = this.props.pendingOrder
-    pendingOrder.userId
-      ? console.log('Pending Order already exists for this User')
-      : this.props.addOrder(this.props.userId)
+    this.props.addOrder(this.props.userId)
   }
 
   render() {
@@ -60,7 +54,6 @@ const productMapStateToProps = state => ({
 const productMapDispatchToProps = dispatch => ({
   fetchProduct: id => dispatch(selectedProductsThunk(id)),
   addToCart: selectedProduct => dispatch(addToCartThunk(selectedProduct)),
-  getPendingOrder: () => dispatch(getPendingOrderThunk()),
   addOrder: userId => dispatch(addOrderThunk(userId))
 })
 

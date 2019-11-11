@@ -8,7 +8,6 @@ export const Cart = props => {
   const total = props.cart.total
   const changeStatus = props.changeStatus
   const userId = props.userId
-  const removeItem = props.removeItem
 
   return (
     <div id="cart">
@@ -26,11 +25,7 @@ export const Cart = props => {
               </div>
               <img className="cartImg" src={shoe.imageUrl} />
               <div>
-                <button
-                  onClick={() => removeItem(shoe)}
-                  className="button"
-                  type="submit"
-                >
+                <button className="button" type="submit">
                   Remove From Cart
                 </button>
                 <Link to="/checkout">
@@ -57,8 +52,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  changeStatus: id => dispatch(updateStatusThunk(id)),
-  removeItem: product => dispatch(removeFromCartThunk(product))
+  changeStatus: id => dispatch(updateStatusThunk(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
