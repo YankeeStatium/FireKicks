@@ -74,9 +74,9 @@ router.post('/:id/order', async (req, res, next) => {
         status: 'Pending'
       }
     })
-    userOrder.addProduct({
-      productId: 1
-    })
+    // userOrder.addProduct({
+    //   productId: 1
+    // })
     res.json(userOrder)
   } catch (err) {
     next(err)
