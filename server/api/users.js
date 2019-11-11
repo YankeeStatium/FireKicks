@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Order, Product} = require('../db/models')
+const {User, Order, Product, OrderItem} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -19,14 +19,14 @@ router.get('/', async (req, res, next) => {
 //GET PENDING ORDER FOR USER
 router.get('/:id/order', async (req, res, next) => {
   try {
-    const orders = await Order.findOne({
+    const [order, _] = await Order.findOrCreate({
       where: {
         userId: req.params.id,
         status: 'Pending'
       },
       include: [{model: Product}]
     })
-    res.json(orders)
+    res.json(order)
   } catch (err) {
     next(err)
   }
@@ -52,14 +52,19 @@ router.put('/:id/order', async (req, res, next) => {
 
 //GET PENDING ORDERS FOR USER
 
-//CREATE ORDER
+//CREATE ORDERITEM
 router.post('/:id/order', async (req, res, next) => {
   try {
-    const order = await Order.create({
-      status: 'Pending',
-      userId: req.params.id
+    const userOrder = await Order.findOrCreate({
+      where: {
+        userId: req.params.id,
+        status: 'Pending'
+      }
     })
-    res.json(order)
+    userOrder.addProduct({
+      productId: 1
+    })
+    res.json(userOrder)
   } catch (err) {
     next(err)
   }

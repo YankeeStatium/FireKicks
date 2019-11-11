@@ -2,7 +2,6 @@ import axios from 'axios'
 import history from '../history'
 
 const ADD_TO_CART = 'ADD_TO_CART'
-const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 
 const initialState = {
   items: [],
@@ -15,21 +14,10 @@ export const addToCart = product => ({
   product
 })
 
-export const removeFromCart = product => ({
-  type: REMOVE_FROM_CART,
-  product
-})
-
 //Thunk Creators
 export const addToCartThunk = selectedProduct => {
   return dispatch => {
     dispatch(addToCart(selectedProduct))
-  }
-}
-
-export const removeFromCartThunk = product => {
-  return dispatch => {
-    dispatch(removeFromCart(product))
   }
 }
 
@@ -67,11 +55,6 @@ export default function(state = initialState, action) {
         }
       }
     }
-    case REMOVE_FROM_CART:
-      return {
-        ...state,
-        items: state.items.filter(item => item.id !== action.product.id)
-      }
     default:
       return {...state}
   }
