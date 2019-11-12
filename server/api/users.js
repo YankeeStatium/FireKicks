@@ -30,7 +30,7 @@ router.get('/', async (req, res, next) => {
 // })
 
 //GET PENDING ORDER FOR USER
-router.get('/:id/order', async (req, res, next) => {
+router.get('/:id/orders', async (req, res, next) => {
   try {
     const [order, _] = await Order.findOrCreate({
       where: {
@@ -46,7 +46,7 @@ router.get('/:id/order', async (req, res, next) => {
 })
 
 //UPDATE ORDER STATUS
-router.put('/:id/order', async (req, res, next) => {
+router.put('/:id/orders', async (req, res, next) => {
   try {
     const orders = await Order.update(
       {status: 'Completed'},
@@ -66,18 +66,24 @@ router.put('/:id/order', async (req, res, next) => {
 //GET PENDING ORDERS FOR USER
 
 //CREATE ORDERITEM
-router.post('/:id/order', async (req, res, next) => {
+router.post('/:userId/orders/products/:prodId', async (req, res, next) => {
   try {
-    const userOrder = await Order.findOrCreate({
+    const [userOrder, _] = await Order.findOrCreate({
       where: {
-        userId: req.params.id,
+        userId: req.params.userId,
         status: 'Pending'
       }
     })
-    // userOrder.addProduct({
-    //   productId: 1
-    // })
-    res.json(userOrder)
+    const [orderItem, wasCreated] = await OrderItem.findOrCreate({
+      where: {
+        orderId: userOrder.id,
+        productId: req.params.prodId
+      }
+    })
+    if (wasCreated) {
+      orderItem.quantity += 1
+    }
+    res.json(orderItem)
   } catch (err) {
     next(err)
   }

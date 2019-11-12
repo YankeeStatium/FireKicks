@@ -15,7 +15,7 @@ class SingleProduct extends Component {
 
   handleClick(selectedProduct) {
     this.props.addToCart(selectedProduct)
-    this.props.addOrder(this.props.userId)
+    this.props.addOrder(this.props.userId, selectedProduct.id)
   }
 
   render() {
@@ -59,7 +59,7 @@ const productMapStateToProps = state => ({
 const productMapDispatchToProps = dispatch => ({
   fetchProduct: id => dispatch(selectedProductsThunk(id)),
   addToCart: selectedProduct => dispatch(addToCartThunk(selectedProduct)),
-  addOrder: userId => dispatch(addOrderThunk(userId))
+  addOrder: (userId, prodId) => dispatch(addOrderThunk(userId, prodId))
 })
 
 const connectSingleProduct = connect(

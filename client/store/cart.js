@@ -27,7 +27,7 @@ export const removeFromCartThunk = shoe => {
 }
 
 export const addToCartThunk = selectedProduct => {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     dispatch(addToCart(selectedProduct))
   }
 }
@@ -36,7 +36,7 @@ export const updateStatusThunk = id => {
   return async (dispatch, getState) => {
     try {
       let {user} = getState()
-      await axios.put(`/api/users/${id}/order`, {})
+      await axios.put(`/api/users/${id}/orders`, {})
     } catch (error) {
       console.error('ORDER CANNOT BE UPDATED')
     }

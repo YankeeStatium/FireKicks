@@ -26,7 +26,7 @@ export const getPendingOrderThunk = () => {
   return async (dispatch, getState) => {
     try {
       let {user} = getState()
-      const {data} = await axios.get(`/api/users/${user.id}/order`)
+      const {data} = await axios.get(`/api/users/${user.id}/orders`)
       dispatch(getPendingOrder(data))
     } catch (error) {
       console.error('Order could not be found')
@@ -34,10 +34,12 @@ export const getPendingOrderThunk = () => {
   }
 }
 
-export const addOrderThunk = userId => {
+export const addOrderThunk = (userId, prodId) => {
   return async (dispatch, getState) => {
     try {
-      const {data} = await axios.post(`/api/users/${userId}/order`)
+      const {data} = await axios.post(
+        `/api/users/${userId}/orders/products/${prodId}`
+      )
       dispatch(addOrder(userId))
     } catch (error) {
       console.error('Order could not be added')
