@@ -21,6 +21,7 @@ export class UserHome extends Component {
   }
 
   handleChange(event) {
+    //only update local state when value is not an empty string
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -32,6 +33,14 @@ export class UserHome extends Component {
       const {userId} = this.props
       const {name, email, gender} = this.state
       event.preventDefault()
+
+      // const updatedUser = {
+      //   userId,
+      //   name: this.state.name || name,
+      //   email: this.state.email || email,
+      //   gender: this.state.gender || gender
+      // }
+
       await updateUser(userId, name, email, gender)
 
       this.setState({
@@ -97,8 +106,7 @@ const mapState = state => {
     userId: state.user.id,
     name: state.user.name,
     email: state.user.email,
-    gender: state.user.gender,
-    password: state.user.password
+    gender: state.user.gender
   }
 }
 

@@ -33,11 +33,18 @@ export const updateUser = (userId, name, email, gender) => ({
 export const updateUserThunk = (userId, name, email, gender) => {
   return async dispatch => {
     try {
-      await axios.put(`/api/users/${userId}`, {
-        name,
-        email,
-        gender
-      })
+      const data = {}
+      //If fields are not blank, then send it to server
+      if (email !== '') {
+        data.email = email
+      }
+      if (name !== '') {
+        data.name = name
+      }
+      if (gender !== '') {
+        data.gender = gender
+      }
+      await axios.put(`/api/users/${userId}`, data)
       dispatch(updateUser(userId, name, email, gender))
     } catch (err) {
       console.err("USER CAN'T BE UPDATED")

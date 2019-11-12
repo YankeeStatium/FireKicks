@@ -18,6 +18,8 @@ router.get('/', async (req, res, next) => {
 
 //UPDATE USER
 router.put('/:id', async (req, res, next) => {
+  const {id, email, gender} = req.body
+
   try {
     await User.update(req.body, {
       where: {id: req.params.id}
