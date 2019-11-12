@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {selectedProductsThunk} from '../store/products'
-import {addToCart, addToCartThunk, removeFromCartThunk} from '../store/cart'
-import {addOrderThunk, getPendingOrderThunk} from '../store/orders'
-import {cartLocal} from './cart'
+import {addToCartThunk} from '../store/cart'
+import {addToOrderThunk, getOrderThunk} from '../store/orders'
 import {Link} from 'react-router-dom'
 //import Button from 'react-bootstrap/Button'
 
@@ -11,11 +10,12 @@ class SingleProduct extends Component {
   componentDidMount() {
     const prodId = this.props.match.params.id
     this.props.fetchProduct(prodId)
+    this.props.initOrder(this.props.userId)
   }
 
   handleClick(selectedProduct) {
     this.props.addToCart(selectedProduct)
-    this.props.addOrder(this.props.userId, selectedProduct.id)
+    this.props.createOrder(this.props.userId, selectedProduct)
   }
 
   render() {
@@ -59,7 +59,8 @@ const productMapStateToProps = state => ({
 const productMapDispatchToProps = dispatch => ({
   fetchProduct: id => dispatch(selectedProductsThunk(id)),
   addToCart: selectedProduct => dispatch(addToCartThunk(selectedProduct)),
-  addOrder: (userId, prodId) => dispatch(addOrderThunk(userId, prodId))
+  initOrder: userId => dispatch(getOrderThunk(userId)),
+  createOrder: (userId, product) => dispatch(addToOrderThunk(userId, product))
 })
 
 const connectSingleProduct = connect(

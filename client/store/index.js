@@ -21,9 +21,12 @@ const middleware = composeWithDevTools(
 )
 const store = createStore(reducer, persistedState, middleware)
 
-store.subscribe(() => {
-  saveState(store.getState())
-})
+// If no user is currently on state, we store cart in local storage
+if (store.getState().user === {}) {
+  store.subscribe(() => {
+    saveState({cart: store.getState().cart})
+  })
+}
 
 export default store
 export * from './user'

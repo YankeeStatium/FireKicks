@@ -3,6 +3,7 @@ import history from '../history'
 
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
+const COMPLETE_ORDER = 'COMPLETE_ORDER'
 
 const initialState = {
   items: [],
@@ -20,6 +21,10 @@ export const removeFromCart = shoe => ({
   shoe
 })
 
+export const completeOrder = () => ({
+  type: COMPLETE_ORDER
+})
+
 export const removeFromCartThunk = shoe => {
   return dispatch => {
     dispatch(removeFromCart(shoe))
@@ -27,16 +32,16 @@ export const removeFromCartThunk = shoe => {
 }
 
 export const addToCartThunk = selectedProduct => {
-  return async (dispatch, getState) => {
+  return dispatch => {
     dispatch(addToCart(selectedProduct))
   }
 }
 
 export const updateStatusThunk = id => {
-  return async (dispatch, getState) => {
+  return async dispatch => {
     try {
-      let {user} = getState()
-      await axios.put(`/api/users/${id}/orders`, {})
+      await axios.put(`/api/users/${id}/order/complete`, {})
+      dispatch(completeOrder())
     } catch (error) {
       console.error('ORDER CANNOT BE UPDATED')
     }
@@ -79,6 +84,9 @@ export default function(state = initialState, action) {
           .filter(item => item.quantity > 0),
         total: state.total - action.shoe.price
       }
+
+    case COMPLETE_ORDER:
+      return initialState
     default:
       return {...state}
   }
