@@ -6,6 +6,7 @@ import {
   removeFromCartThunk
 } from '../store/cart'
 import {Link} from 'react-router-dom'
+import Checkout from './Checkout'
 
 export const Cart = props => {
   const cart = props.cart.items
