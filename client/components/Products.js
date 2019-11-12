@@ -19,6 +19,9 @@ export class Products extends Component {
               <h3 style={{color: 'black', fontFamily: 'Arial'}}>
                 {product.name}
               </h3>
+              <h6 style={{color: 'black', fontFamily: 'Arial'}}>
+                ${product.price / 100}
+              </h6>
             </Link>
           </div>
         ))}

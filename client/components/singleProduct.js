@@ -41,7 +41,15 @@ class SingleProduct extends Component {
             Add to Cart
           </button>
           <h3>Gender: {selectedProduct.gender}</h3>
-          <h3>Sizes: {selectedProduct.size.join(', ')}</h3>
+          <h3>Price: ${selectedProduct.price / 100}</h3>
+          <h3>
+            Sizes:{' '}
+            <select>
+              {selectedProduct.size.map(size => {
+                return <option>{size}</option>
+              })}
+            </select>{' '}
+          </h3>
         </div>
       )
     } else {
@@ -49,6 +57,7 @@ class SingleProduct extends Component {
     }
   }
 }
+//{selectedProduct.size.join(', ')}
 //with a sub reducer it goes a level deep
 const productMapStateToProps = state => ({
   userId: state.user.id,
