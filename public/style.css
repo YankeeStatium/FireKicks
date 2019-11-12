@@ -13,8 +13,9 @@ label {
 .nav {
   display: flex;
   justify-content: space-around;
-  background-image: linear-gradient(red, yellow);
-  height: 100px;
+  /* background-image: linear-gradient(red, yellow); */
+  /* height: 100px;
+  background-image: url('https://wallpapercave.com/wp/wp2640523.jpg'); */
 }
 
 form div {
