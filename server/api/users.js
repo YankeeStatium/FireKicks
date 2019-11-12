@@ -16,6 +16,18 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//UPDATE USER
+router.put('/:id', async (req, res, next) => {
+  try {
+    await User.update(req.body, {
+      where: {id: req.params.id}
+    })
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
+
 //CREATE ORDER
 // router.post('/:id/order', async (req, res, next) => {
 //   try {
