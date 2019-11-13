@@ -5,7 +5,7 @@ import {addToCart, addToCartThunk, removeFromCartThunk} from '../store/cart'
 import {addOrderThunk, getPendingOrderThunk} from '../store/orders'
 import {cartLocal} from './cart'
 import {Link} from 'react-router-dom'
-//import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button'
 
 class SingleProduct extends Component {
   componentDidMount() {
@@ -33,36 +33,41 @@ class SingleProduct extends Component {
     if (selectedProduct.id) {
       return (
         <div className="single_component">
-          <h1 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
-            {selectedProduct.name}
-          </h1>
-          <h2 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
-            Brand: {selectedProduct.brand}
-          </h2>
-          <img src={selectedProduct.imageUrl} />
-          <br />
-          <button
-            style={{color: 'black', fontFamily: 'Lemon, curisve'}}
-            type="button"
-            className="button"
-            onClick={() => this.handleClick(selectedProduct)}
-          >
-            Add to Cart
-          </button>
-          <h3 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
-            Gender: {selectedProduct.gender}
-          </h3>
-          <h3 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
-            Price: ${selectedProduct.price / 100}
-          </h3>
-          <h3 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
-            Sizes:{' '}
-            <select>
-              {selectedProduct.size.map(size => {
-                return <option>{size}</option>
-              })}
-            </select>{' '}
-          </h3>
+          <div>
+            <h1 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
+              {selectedProduct.name}
+            </h1>
+            <h2 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
+              Brand: {selectedProduct.brand}
+            </h2>
+            <img src={selectedProduct.imageUrl} />
+            <br />
+            <button
+              style={{color: 'black', fontFamily: 'Lemon, curisve'}}
+              type="button"
+              className="button"
+              onClick={() => this.handleClick(selectedProduct)}
+            >
+              Add to Cart
+            </button>
+            <h3 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
+              Gender: {selectedProduct.gender}
+            </h3>
+            <h3 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
+              Price: ${selectedProduct.price / 100}
+            </h3>
+            <h3 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
+              Sizes:{' '}
+              <select>
+                {selectedProduct.size.map(size => {
+                  return <option>{size}</option>
+                })}
+              </select>{' '}
+            </h3>
+          </div>
+          <div className="description">
+            <h3>{selectedProduct.description}</h3>
+          </div>
         </div>
       )
     } else {

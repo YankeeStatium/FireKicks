@@ -50,9 +50,18 @@ form div {
   text-shadow: 0 0 3px orange;
 }
 .single_component {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 30px;
   text-shadow: 0 0 3px orange;
 }
 
 #title {
   font-family: 'Lemon, curisve';
+}
+.description {
+  display: flex;
+  flex-direction: column;
+  align-self: auto;
 }
