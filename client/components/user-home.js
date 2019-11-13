@@ -34,14 +34,15 @@ export class UserHome extends Component {
       const {name, email, gender} = this.state
       event.preventDefault()
 
-      // const updatedUser = {
-      //   userId,
-      //   name: this.state.name || name,
-      //   email: this.state.email || email,
-      //   gender: this.state.gender || gender
-      // }
+      const updatedUser = {
+        userId,
+        name: name || this.props.name,
+        email: email || this.props.email,
+        gender: gender || this.props.gender
+      }
 
-      await updateUser(userId, name, email, gender)
+      await updateUser(updatedUser)
+      console.log('PROPS', this.props)
 
       this.setState({
         name: '',
