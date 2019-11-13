@@ -6,37 +6,63 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>#FireKicks</h1>
+    <h1 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>#FireKicks</h1>
     <nav>
       {isLoggedIn ? (
         <div className="nav">
           {/* The navbar will show these links after you log in */}
-          <Link to="/" style={{color: 'black'}}>
+          <Link
+            to="/"
+            style={{
+              color: 'black'
+            }}
+          >
             All Products
           </Link>
-          <Link to="/profile" style={{color: 'black'}}>
+          <Link
+            to="/profile"
+            style={{color: 'black', fontFamily: 'Lemon, curisve'}}
+          >
             My Profile
           </Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
-          <Link to="/cart" style={{color: 'black'}}>
+          <Link
+            to="/cart"
+            style={{color: 'black', fontFamily: 'Lemon, curisve'}}
+          >
             Cart
           </Link>
         </div>
       ) : (
         <div className="nav">
           {/* The navbar will show these links before you log in */}
-          <Link to="/" style={{color: 'black'}}>
+          <Link
+            to="/"
+            style={{
+              color: 'black',
+              fontFamily: 'Lemon, curisve'
+            }}
+          >
             All Products
           </Link>
-          <Link to="/login" style={{color: 'black'}}>
+          <Link
+            to="/login"
+            style={{color: 'black', fontFamily: 'Lemon, curisve'}}
+          >
             Login
           </Link>
-          <Link to="/signup" style={{color: 'black'}}>
+          <Link
+            to="/signup"
+            style={{color: 'black', fontFamily: 'Lemon, curisve'}}
+          >
             Sign Up
           </Link>
-          <Link to="/cart" style={{color: 'black'}}>
+          <Link
+            to="/cart"
+            style={{color: 'black', fontFamily: 'Lemon, curisve'}}
+          >
             Cart
           </Link>
         </div>

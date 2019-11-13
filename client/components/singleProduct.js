@@ -24,25 +24,38 @@ class SingleProduct extends Component {
     // const addOrder = this.props.addOrder
     //Checking for an id works better because an empty obj would still be truthy
     if (selectedProduct === null) {
-      return <h1>No shoes for you!</h1>
+      return (
+        <h1 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
+          No shoes for you!
+        </h1>
+      )
     }
     if (selectedProduct.id) {
       return (
         <div className="single_component">
-          <h1>{selectedProduct.name}</h1>
-          <h2>Brand: {selectedProduct.brand}</h2>
+          <h1 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
+            {selectedProduct.name}
+          </h1>
+          <h2 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
+            Brand: {selectedProduct.brand}
+          </h2>
           <img src={selectedProduct.imageUrl} />
           <br />
           <button
+            style={{color: 'black', fontFamily: 'Lemon, curisve'}}
             type="button"
             className="button"
             onClick={() => this.handleClick(selectedProduct)}
           >
             Add to Cart
           </button>
-          <h3>Gender: {selectedProduct.gender}</h3>
-          <h3>Price: ${selectedProduct.price / 100}</h3>
-          <h3>
+          <h3 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
+            Gender: {selectedProduct.gender}
+          </h3>
+          <h3 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
+            Price: ${selectedProduct.price / 100}
+          </h3>
+          <h3 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
             Sizes:{' '}
             <select>
               {selectedProduct.size.map(size => {

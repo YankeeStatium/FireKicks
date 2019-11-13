@@ -13,9 +13,8 @@ label {
 .nav {
   display: flex;
   justify-content: space-around;
-  /* background-image: linear-gradient(red, yellow); */
-  /* height: 100px;
-  background-image: url('https://wallpapercave.com/wp/wp2640523.jpg'); */
+  margin: 20px;
+  height: 30px;
 }
 
 form div {
@@ -48,5 +47,12 @@ form div {
 }
 .product h3 {
   font-size: 20px;
-  text-shadow: 2px 2px 5px red;
+  text-shadow: 0 0 3px orange;
+}
+.single_component {
+  text-shadow: 0 0 3px orange;
+}
+
+#title {
+  font-family: 'Lemon, curisve';
 }
