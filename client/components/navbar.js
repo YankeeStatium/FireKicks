@@ -14,7 +14,8 @@ const Navbar = ({handleClick, isLoggedIn, userId}) => (
           <Link
             to="/"
             style={{
-              color: 'black'
+              color: 'black',
+              fontFamily: 'Lemon, curisve'
             }}
           >
             All Products
@@ -25,7 +26,11 @@ const Navbar = ({handleClick, isLoggedIn, userId}) => (
           >
             My Profile
           </Link>
-          <a href="#" onClick={handleClick}>
+          <a
+            href="#"
+            onClick={handleClick}
+            style={{color: 'black', fontFamily: 'Lemon, curisve'}}
+          >
             Logout
           </a>
           <Link

@@ -65,8 +65,8 @@ class SingleProduct extends Component {
             <h3 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
               Sizes:{' '}
               <select>
-                {selectedProduct.size.map(size => {
-                  return <option>{size}</option>
+                {selectedProduct.size.map((size, idx) => {
+                  return <option key={idx}>{size}</option>
                 })}
               </select>{' '}
             </h3>
