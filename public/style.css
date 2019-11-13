@@ -13,6 +13,8 @@ label {
 .nav {
   display: flex;
   justify-content: space-around;
+  margin: 20px;
+  height: 30px;
 }
 
 form div {
@@ -45,5 +47,21 @@ form div {
 }
 .product h3 {
   font-size: 20px;
-  text-shadow: 2px 2px 5px red;
+  text-shadow: 0 0 3px orange;
+}
+.single_component {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 30px;
+  text-shadow: 0 0 3px orange;
+}
+
+#title {
+  font-family: 'Lemon, curisve';
+}
+.description {
+  display: flex;
+  flex-direction: column;
+  align-self: auto;
 }

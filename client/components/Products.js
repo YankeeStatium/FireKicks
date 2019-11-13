@@ -16,10 +16,10 @@ export class Products extends Component {
           <div className="product" key={product.id}>
             <Link to={`/products/${product.id}`}>
               <img className="image" src={product.imageUrl} />
-              <h3 style={{color: 'black', fontFamily: 'Arial'}}>
+              <h3 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
                 {product.name}
               </h3>
-              <h6 style={{color: 'black', fontFamily: 'Arial'}}>
+              <h6 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
                 ${product.price / 100}
               </h6>
             </Link>
