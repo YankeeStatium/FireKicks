@@ -22,7 +22,7 @@ const middleware = composeWithDevTools(
 const store = createStore(reducer, persistedState, middleware)
 
 store.subscribe(() => {
-  saveState(store.getState())
+  saveState({cart: store.getState().cart})
 })
 
 export default store
