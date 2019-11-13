@@ -69,7 +69,8 @@ export const updateStatusThunk = id => {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_CART: {
-      let newTotal, products
+      let newTotal,
+        products = []
       // Cleaning the data once getting back from DB
       if (action.items) {
         products = action.items.map(item => {

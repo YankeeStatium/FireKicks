@@ -7,7 +7,7 @@ import {me} from './store'
 import SingleProduct from './components/singleProduct'
 import Products from './components/Products'
 import Cart from './components/cart'
-import {Checkout} from './components/Checkout'
+import Checkout from './components/Checkout'
 
 /**
  * COMPONENT

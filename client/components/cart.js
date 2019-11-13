@@ -7,6 +7,7 @@ import {
 } from '../store/cart'
 import {removeFromOrderThunk} from '../store/orders'
 import {Link} from 'react-router-dom'
+import Checkout from './Checkout'
 
 export class Cart extends React.Component {
   componentDidMount() {
@@ -29,6 +30,14 @@ export class Cart extends React.Component {
       }
     }
 
+    const handleCheckout = (userId, e) => {
+      if (!userId) {
+        window.alert('Sorry! Checkout only works for users.')
+        e.preventDefault()
+      } else {
+        changeStatus(userId)
+      }
+    }
     return (
       <div id="cart">
         {cart.length === 0 || cart.length === undefined ? (
@@ -60,7 +69,7 @@ export class Cart extends React.Component {
               <button
                 className="button"
                 type="submit"
-                onClick={() => changeStatus(userId)}
+                onClick={e => handleCheckout(userId, e)}
               >
                 Checkout
               </button>

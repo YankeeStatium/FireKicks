@@ -37,40 +37,40 @@ const users = [
 
 const products = [
   {
-    name: 'Nike SB Zoom Stefan Janoski',
-    brand: 'Nike',
+    name: 'GV Special Lux',
+    brand: 'Puma',
     size: [9, 10, 10.5, 11, 11.5],
     gender: 'Men',
     price: 6000,
     imageUrl:
-      'https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/hjqejbfh0tkepd5fai04/sb-zoom-stefan-janoski-rm-skate-shoe-cJ66d1.jpg'
+      'https://cdn1.shoebacca.com/catalog/product/3/6/368151-02_1l.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700'
   },
   {
-    name: 'Nike SB Zoom Stefan Janoski Slip Mid',
-    brand: 'Nike',
+    name: 'Roma Basic',
+    brand: 'Puma',
     size: [9, 10, 10.5, 11, 11.5],
     gender: 'Men',
     price: 7500,
     imageUrl:
-      'https://c.static-nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/n4umox6et8keax9zx7dw/sb-zoom-stefan-janoski-slip-mid-rm-skate-shoe-63mLNx.jpg'
+      'https://cdn1.shoebacca.com/catalog/product/3/5/353572-88_1l.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700'
   },
   {
-    name: 'NMD_R1 SHOES',
+    name: 'Hoops Mid 2.0',
     brand: 'Adidas',
     size: [9, 10, 10.5, 11, 11.5],
     gender: 'Men',
     price: 11000,
     imageUrl:
-      'https://assets.adidas.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/c730ce6803f7423ab9a3aa7900ebab2b_9366/NMD_R1_Shoes_Black_EE5107_01_standard.jpg'
+      'https://cdn1.shoebacca.com/catalog/product/F/3/F35101_1l.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700'
   },
   {
-    name: 'Continental 80 Shoes',
+    name: 'Busenitz Vulc Rx',
     brand: 'Adidas',
     size: [9, 10, 10.5, 11, 11.5],
     gender: 'Men',
     price: 7000,
     imageUrl:
-      'https://assets.adidas.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/8df5ab4346d7475ebb08a91500a047d3_9366/Continental_80_Shoes_White_G27706_01_standard.jpg'
+      'https://cdn1.shoebacca.com/catalog/product/B/Y/BY3980_1l.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700'
   },
   {
     name: 'court ff 2',
@@ -116,6 +116,60 @@ const products = [
     price: 5495,
     imageUrl:
       'https://cdn1.shoebacca.com/catalog/product/3/7/370245-01_1l.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700'
+  },
+  {
+    name: 'N.92',
+    brand: 'Diadora',
+    size: [9, 10, 10.5, 11, 11.5],
+    gender: 'Men',
+    price: 7000,
+    imageUrl:
+      'https://cdn1.shoebacca.com/catalog/product/1/7/173169-45041_1l.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700'
+  },
+  {
+    name: 'Sirio Nyl',
+    brand: 'Diadora',
+    size: [9, 10, 10.5, 11, 11.5],
+    gender: 'Men',
+    price: 7000,
+    imageUrl:
+      'https://cdn1.shoebacca.com/catalog/product/1/7/173712-40002_1l.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700'
+  },
+  {
+    name: 'Equipe H Canvas',
+    brand: 'Diadora',
+    size: [9, 10, 10.5, 11, 11.5],
+    gender: 'Men',
+    price: 7000,
+    imageUrl:
+      'https://cdn1.shoebacca.com/catalog/product/1/7/174735-45066_1l.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700'
+  },
+  {
+    name: 'N9000 MM EVO',
+    brand: 'Diadora',
+    size: [9, 10, 10.5, 11, 11.5],
+    gender: 'Men',
+    price: 7000,
+    imageUrl:
+      'https://cdn1.shoebacca.com/catalog/product/1/7/172310-C0641_1l.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700'
+  },
+  {
+    name: 'N9000 H C SW',
+    brand: 'Diadora',
+    size: [9, 10, 10.5, 11, 11.5],
+    gender: 'Men',
+    price: 7000,
+    imageUrl:
+      'https://cdn1.shoebacca.com/catalog/product/1/7/172779-60123_1l.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700'
+  },
+  {
+    name: 'B.Original H Suede',
+    brand: 'Diadora',
+    size: [9, 10, 10.5, 11, 11.5],
+    gender: 'Men',
+    price: 7000,
+    imageUrl:
+      'https://cdn1.shoebacca.com/catalog/product/1/7/174747-75068_1l.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700'
   }
 ]
 
