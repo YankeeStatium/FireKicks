@@ -30,25 +30,26 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
-//CREATE ORDER
-// router.post('/:id/order', async (req, res, next) => {
-//   try {
-//     const order = await Order.create({
-//       status: 'Pending',
-//       userId: req.params.id
-//     })
-//     res.json(order)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
+//GET ALL ORDERS FOR USER
+router.get('/:userId/orderHistory', async (req, res, next) => {
+  try {
+    const orders = await Order.findAll({
+      where: {
+        userId: req.params.userId
+      }
+    })
+    res.json(orders)
+  } catch (err) {
+    next(err)
+  }
+})
 
-//GET PENDING ORDER FOR USER
-router.get('/:id/order', async (req, res, next) => {
+// GET PENDING ORDER FOR USER (CART)
+router.get('/:userId/cart', async (req, res, next) => {
   try {
     const [order, _] = await Order.findOrCreate({
       where: {
-        userId: req.params.id,
+        userId: req.params.userId,
         status: 'Pending'
       },
       include: [{model: Product}]
@@ -59,39 +60,74 @@ router.get('/:id/order', async (req, res, next) => {
   }
 })
 
-//UPDATE ORDER STATUS
-router.put('/:id/order', async (req, res, next) => {
+// ADD ITEM TO PENDING ORDER OR CREATE NEW PENDING ORDER
+router.put('/:userId/cart', async (req, res, next) => {
   try {
-    const orders = await Order.update(
-      {status: 'Completed'},
-      {
-        where: {
-          userId: req.params.id,
-          status: 'Pending'
-        }
+    const product = req.body
+    const order = await Order.findOne({
+      where: {
+        userId: req.params.userId,
+        status: 'Pending'
+      },
+      include: [{model: Product}]
+    })
+    let [orderItem, wasCreated] = await OrderItem.findOrCreate({
+      where: {
+        orderId: order.id,
+        productId: product.id
       }
-    )
-    res.json(orders)
+    })
+    if (wasCreated === false) {
+      orderItem.quantity++
+      orderItem = await orderItem.save()
+    }
+    res.json(orderItem)
   } catch (err) {
     next(err)
   }
 })
 
-//GET PENDING ORDERS FOR USER
-
-//CREATE ORDERITEM
-router.post('/:id/order', async (req, res, next) => {
+// DELETE ITEM FROM ORDER (CART)
+router.delete('/:userId/cart/deleteItem/:prodId', async (req, res, next) => {
   try {
-    const userOrder = await Order.findOrCreate({
+    const order = await Order.findOne({
       where: {
-        userId: req.params.id,
+        userId: req.params.userId,
         status: 'Pending'
+      },
+      include: [{model: Product}]
+    })
+    let orderItem = await OrderItem.findOne({
+      where: {
+        orderId: order.id,
+        productId: req.params.prodId
       }
     })
-    // userOrder.addProduct({
-    //   productId: 1
-    // })
-    res.json(userOrder)
+    if (orderItem.quantity > 1) {
+      orderItem.quantity--
+      orderItem = await orderItem.save()
+    } else {
+      await orderItem.destroy()
+    }
+    res.sendStatus(201)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// COMPLETE ORDER (CHANGE FROM PENDING => COMPLETE)
+router.put('/:userId/cart/complete', async (req, res, next) => {
+  try {
+    const order = await Order.update(
+      {status: 'Completed'},
+      {
+        where: {
+          userId: req.params.userId,
+          status: 'Pending'
+        }
+      }
+    )
+    res.json(order)
   } catch (err) {
     next(err)
   }

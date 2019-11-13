@@ -2,55 +2,72 @@ import axios from 'axios'
 import history from '../history'
 
 const initialState = {
-  pendingOrder: {},
-  orders: {}
+  orders: []
 }
 
 //ACTION TYPES
-const ADD_ORDER = 'ADD_ORDER'
-const GET_PENDING_ORDER = 'GET_PENDING_ORDER'
+const ADD_TO_ORDER = 'ADD_TO_ORDER'
+const REMOVE_FROM_ORDER = 'REMOVE_FROM_ORDER'
+const GET_ORDER = 'GET_ORDER'
 
 //ACTION CREATOR
-const getPendingOrder = order => ({
-  type: GET_PENDING_ORDER,
+const getOrder = order => ({
+  type: GET_ORDER,
   order
 })
 
-const addOrder = userId => ({
-  type: ADD_ORDER,
-  userId
+const addToOrder = order => ({
+  type: ADD_TO_ORDER,
+  order
+})
+
+const removeFromOrder = product => ({
+  type: REMOVE_FROM_ORDER,
+  product
 })
 
 //THUNK CREATORS
-export const getPendingOrderThunk = () => {
-  return async (dispatch, getState) => {
+export const getOrderThunk = userId => {
+  return async dispatch => {
     try {
-      let {user} = getState()
-      const {data} = await axios.get(`/api/users/${user.id}/order`)
-      dispatch(getPendingOrder(data))
+      const {data} = await axios.get(`/api/users/${userId}/cart`)
+      dispatch(getOrder(data))
     } catch (error) {
       console.error('Order could not be found')
     }
   }
 }
 
-export const addOrderThunk = userId => {
-  return async (dispatch, getState) => {
+export const addToOrderThunk = (userId, product) => {
+  return async dispatch => {
     try {
-      const {data} = await axios.post(`/api/users/${userId}/order`)
-      dispatch(addOrder(userId))
+      const {data} = await axios.put(`/api/users/${userId}/cart`, product)
+      dispatch(addToOrder(data))
     } catch (error) {
-      console.error('Order could not be added')
+      console.error('Could not add to order', error)
+    }
+  }
+}
+
+export const removeFromOrderThunk = (userId, product) => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.delete(
+        `/api/users/${userId}/cart/deleteItem/${product.id}`
+      )
+      dispatch(removeFromOrder(data))
+    } catch (err) {
+      console.error('Could not remove from order', err)
     }
   }
 }
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_PENDING_ORDER:
-      return {...state, pendingOrder: action.order}
-    case ADD_ORDER:
-      return {...state, orders: {...action.userId}}
+    case GET_ORDER:
+      return {...state}
+    case ADD_TO_ORDER:
+      return {...state}
     default:
       return state
   }

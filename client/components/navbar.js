@@ -4,27 +4,67 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({handleClick, isLoggedIn, userId}) => (
   <div>
-    <h1>#FireKicks</h1>
+    <h1 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>#FireKicks</h1>
     <nav>
       {isLoggedIn ? (
         <div className="nav">
           {/* The navbar will show these links after you log in */}
-          <Link to="/">All Products</Link>
-          <Link to="/profile">My Profile</Link>
+          <Link
+            to="/"
+            style={{
+              color: 'black'
+            }}
+          >
+            All Products
+          </Link>
+          <Link
+            to="/home"
+            style={{color: 'black', fontFamily: 'Lemon, curisve'}}
+          >
+            My Profile
+          </Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
-          <Link to="/cart">Cart</Link>
+          <Link
+            to={`/cart/${userId}`}
+            style={{color: 'black', fontFamily: 'Lemon, curisve'}}
+          >
+            Cart
+          </Link>
         </div>
       ) : (
         <div className="nav">
           {/* The navbar will show these links before you log in */}
-          <Link to="/">All Products</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/cart">Cart</Link>
+          <Link
+            to="/"
+            style={{
+              color: 'black',
+              fontFamily: 'Lemon, curisve'
+            }}
+          >
+            All Products
+          </Link>
+          <Link
+            to="/login"
+            style={{color: 'black', fontFamily: 'Lemon, curisve'}}
+          >
+            Login
+          </Link>
+          <Link
+            to="/signup"
+            style={{color: 'black', fontFamily: 'Lemon, curisve'}}
+          >
+            Sign Up
+          </Link>
+          <Link
+            to="/cart"
+            style={{color: 'black', fontFamily: 'Lemon, curisve'}}
+          >
+            Cart
+          </Link>
         </div>
       )}
     </nav>
@@ -37,7 +77,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    userId: state.user.id
   }
 }
 
@@ -56,5 +97,6 @@ export default connect(mapState, mapDispatch)(Navbar)
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
+  userId: PropTypes.number
 }

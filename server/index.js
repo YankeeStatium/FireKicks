@@ -10,6 +10,7 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
+
 module.exports = app
 
 // This is a global Mocha hook, used for resource cleanup.
@@ -41,6 +42,8 @@ passport.deserializeUser(async (id, done) => {
 })
 
 const createApp = () => {
+  const paymentApi = require('../constants/routes/payment')
+  paymentApi(app)
   // logging middleware
   app.use(morgan('dev'))
 

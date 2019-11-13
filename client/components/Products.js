@@ -11,47 +11,22 @@ export class Products extends Component {
   render() {
     const {products} = this.props.products
     const shoes = (
-      <div id="products">
+      <div className="products">
         {products.map(product => (
           <div className="product" key={product.id}>
-            <Link to={`/products/${product.id}`} />
             <Link to={`/products/${product.id}`}>
-              <img src={product.imageUrl} />
-              <h3 style={{color: 'red', fontFamily: 'Arial'}}>
+              <img className="image" src={product.imageUrl} />
+              <h3 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
                 {product.name}
               </h3>
+              <h6 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
+                ${product.price / 100}
+              </h6>
             </Link>
           </div>
         ))}
       </div>
     )
-    // return (
-    //   <div>
-    //     <CardDeck>
-    //       {products.map(product => (
-    //         <Card
-    //           key={product.id}
-    //           style={{width: '15px', height: '15px'}}
-    //           className="text-center"
-    //         >
-    //           <Link to={`/products/${product.id}`}>
-    //             <Card.Img variant="top" src={product.imageUrl} />
-    //             <Card.Header as="h3">
-    //               <h3 style={{color: 'red', fontFamily: 'Arial', fontSize: 11}}>
-    //                 {product.name}
-    //               </h3>
-    //             </Card.Header>
-    //           </Link>
-    //           <Button variant="danger">Add</Button>
-    //           {/* <Card.Body>
-    //             <Card.Text />
-
-    //           </Card.Body> */}
-    //         </Card>
-    //       ))}
-    //     </CardDeck>
-    //   </div>
-    // )
     return <div>{shoes}</div>
   }
 }
