@@ -1,7 +1,7 @@
 const FRONTEND_DEV_URLS = ['http://localhost:8080']
 const FRONTEND_PROD_URLS = [
-  'https://www.yourdomain.com',
-  'https://yourdomain.com'
+  'https://www.firekicks.herokuapp.com/',
+  'https://firekicks.herokuapp.com/'
 ]
 module.exports =
   process.env.NODE_ENV === 'production' ? FRONTEND_PROD_URLS : FRONTEND_DEV_URLS
