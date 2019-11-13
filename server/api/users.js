@@ -17,11 +17,11 @@ router.get('/', async (req, res, next) => {
 })
 
 //GET ALL ORDERS FOR USER
-router.get('/:id/orders', async (req, res, next) => {
+router.get('/:userId/orderHistory', async (req, res, next) => {
   try {
     const orders = await Order.findAll({
       where: {
-        userId: req.params.id
+        userId: req.params.userId
       }
     })
     res.json(orders)
@@ -31,11 +31,11 @@ router.get('/:id/orders', async (req, res, next) => {
 })
 
 // GET PENDING ORDER FOR USER (CART)
-router.get('/:id/order/pending', async (req, res, next) => {
+router.get('/:userId/cart', async (req, res, next) => {
   try {
     const [order, _] = await Order.findOrCreate({
       where: {
-        userId: req.params.id,
+        userId: req.params.userId,
         status: 'Pending'
       },
       include: [{model: Product}]
@@ -47,12 +47,12 @@ router.get('/:id/order/pending', async (req, res, next) => {
 })
 
 // ADD ITEM TO PENDING ORDER OR CREATE NEW PENDING ORDER
-router.put('/:id/order/pending', async (req, res, next) => {
+router.put('/:userId/cart', async (req, res, next) => {
   try {
     const product = req.body
     const order = await Order.findOne({
       where: {
-        userId: req.params.id,
+        userId: req.params.userId,
         status: 'Pending'
       },
       include: [{model: Product}]
@@ -66,7 +66,6 @@ router.put('/:id/order/pending', async (req, res, next) => {
     if (wasCreated === false) {
       orderItem.quantity++
       orderItem = await orderItem.save()
-      console.log('INCREMENTING QUANTITY>>>>', orderItem.quantity)
     }
     res.json(orderItem)
   } catch (err) {
@@ -74,7 +73,8 @@ router.put('/:id/order/pending', async (req, res, next) => {
   }
 })
 
-router.delete('/:userId/order/deleteItem/:prodId', async (req, res, next) => {
+// DELETE ITEM FROM ORDER (CART)
+router.delete('/:userId/cart/deleteItem/:prodId', async (req, res, next) => {
   try {
     const order = await Order.findOne({
       where: {
@@ -89,13 +89,10 @@ router.delete('/:userId/order/deleteItem/:prodId', async (req, res, next) => {
         productId: req.params.prodId
       }
     })
-    console.log('FOUND ORDER ITEM >>>>', orderItem)
     if (orderItem.quantity > 1) {
       orderItem.quantity--
       orderItem = await orderItem.save()
-      console.log('DECREMENTING QUANTITY>>>>', orderItem.quantity)
     } else {
-      console.log('Quantity less than 1, destroying')
       await orderItem.destroy()
     }
     res.sendStatus(201)
@@ -104,14 +101,14 @@ router.delete('/:userId/order/deleteItem/:prodId', async (req, res, next) => {
   }
 })
 
-// COMPLETE ORDER (CHANGE FROM PENDING - COMPLETE)
-router.put('/:id/order/complete', async (req, res, next) => {
+// COMPLETE ORDER (CHANGE FROM PENDING => COMPLETE)
+router.put('/:userId/cart/complete', async (req, res, next) => {
   try {
     const order = await Order.update(
       {status: 'Completed'},
       {
         where: {
-          userId: req.params.id,
+          userId: req.params.userId,
           status: 'Pending'
         }
       }

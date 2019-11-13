@@ -30,7 +30,7 @@ const removeFromOrder = product => ({
 export const getOrderThunk = userId => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/users/${userId}/order/pending`)
+      const {data} = await axios.get(`/api/users/${userId}/cart`)
       dispatch(getOrder(data))
     } catch (error) {
       console.error('Order could not be found')
@@ -41,10 +41,7 @@ export const getOrderThunk = userId => {
 export const addToOrderThunk = (userId, product) => {
   return async dispatch => {
     try {
-      const {data} = await axios.put(
-        `/api/users/${userId}/order/pending`,
-        product
-      )
+      const {data} = await axios.put(`/api/users/${userId}/cart`, product)
       dispatch(addToOrder(data))
     } catch (error) {
       console.error('Could not add to order', error)
@@ -56,7 +53,7 @@ export const removeFromOrderThunk = (userId, product) => {
   return async dispatch => {
     try {
       const {data} = await axios.delete(
-        `/api/users/${userId}/order/deleteItem/${product.id}`
+        `/api/users/${userId}/cart/deleteItem/${product.id}`
       )
       dispatch(removeFromOrder(data))
     } catch (err) {

@@ -9,13 +9,19 @@ import {Link} from 'react-router-dom'
 class SingleProduct extends Component {
   componentDidMount() {
     const prodId = this.props.match.params.id
+    const userId = this.props.userId
     this.props.fetchProduct(prodId)
-    this.props.initOrder(this.props.userId)
+    if (userId) {
+      this.props.initOrder(userId)
+    }
   }
 
   handleClick(selectedProduct) {
+    const userId = this.props.userId
     this.props.addToCart(selectedProduct)
-    this.props.createOrder(this.props.userId, selectedProduct)
+    if (userId) {
+      this.props.createOrder(userId, selectedProduct)
+    }
   }
 
   render() {
