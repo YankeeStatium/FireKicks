@@ -14,20 +14,17 @@ const initialState = {
 }
 
 /*
-* ACTION CREATORS
-*/
+ * ACTION CREATORS
+ */
 const getProducts = products => ({
   type: GET_PRODUCTS,
   products
 })
 
-const selectedProduct = product => {
-  //console.log('PRODUCT', product)
-  return {
-    type: SELECTED_PRODUCT,
-    product
-  }
-}
+const selectedProduct = product => ({
+  type: SELECTED_PRODUCT,
+  product
+})
 
 const removeProduct = productId => ({
   type: REMOVE_PRODUCT,
