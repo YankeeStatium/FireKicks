@@ -48,14 +48,6 @@ class SingleProduct extends Component {
             </h2>
             <img src={selectedProduct.imageUrl} />
             <br />
-            <button
-              style={{color: 'black', fontFamily: 'Lemon, curisve'}}
-              type="button"
-              className="button"
-              onClick={() => this.handleClick(selectedProduct)}
-            >
-              Add to Cart
-            </button>
             <h3 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
               Gender: {selectedProduct.gender}
             </h3>
@@ -69,6 +61,14 @@ class SingleProduct extends Component {
                   return <option key={idx}>{size}</option>
                 })}
               </select>{' '}
+              <button
+                style={{color: 'black', fontFamily: 'Lemon, curisve'}}
+                type="button"
+                className="button"
+                onClick={() => this.handleClick(selectedProduct)}
+              >
+                Add to Cart
+              </button>
             </h3>
           </div>
           <div className="description">

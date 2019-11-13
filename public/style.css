@@ -65,3 +65,8 @@ form div {
   flex-direction: column;
   align-self: auto;
 }
+
+#cart {
+  display: flex;
+  justify-content: center;
+}
