@@ -23,9 +23,6 @@ const Product = db.define('product', {
     type: Sequelize.STRING,
     defaultValue:
       'https://cdn1.shoebacca.com/catalog/product/3/6/368151-02_1l.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700'
-  },
-  description: {
-    type: Sequelize.TEXT
   }
 })
 

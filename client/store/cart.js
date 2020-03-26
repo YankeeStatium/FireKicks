@@ -56,10 +56,17 @@ export const addToCartThunk = selectedProduct => {
 }
 
 export const updateStatusThunk = id => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
     try {
-      await axios.put(`/api/users/${id}/cart/complete`, {})
-      dispatch(completeOrder())
+      const {user} = getState()
+      console.log(user)
+      if (user.id) {
+        await axios.put(`/api/users/${user.id}/cart/complete`, {})
+        dispatch(completeOrder())
+        history.push('/checkout')
+      } else {
+        console.error('Please login.')
+      }
     } catch (error) {
       console.error('ORDER CANNOT BE UPDATED')
     }
@@ -69,8 +76,7 @@ export const updateStatusThunk = id => {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_CART: {
-      let newTotal,
-        products = []
+      let newTotal, products
       // Cleaning the data once getting back from DB
       if (action.items) {
         products = action.items.map(item => {

@@ -4,7 +4,7 @@ import {selectedProductsThunk} from '../store/products'
 import {addToCartThunk} from '../store/cart'
 import {addToOrderThunk, getOrderThunk} from '../store/orders'
 import {Link} from 'react-router-dom'
-import Button from 'react-bootstrap/Button'
+//import Button from 'react-bootstrap/Button'
 
 class SingleProduct extends Component {
   componentDidMount() {
@@ -30,50 +30,24 @@ class SingleProduct extends Component {
     // const addOrder = this.props.addOrder
     //Checking for an id works better because an empty obj would still be truthy
     if (selectedProduct === null) {
-      return (
-        <h1 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
-          No shoes for you!
-        </h1>
-      )
+      return <h1>No shoes for you!</h1>
     }
     if (selectedProduct.id) {
       return (
         <div className="single_component">
-          <div>
-            <h1 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
-              {selectedProduct.name}
-            </h1>
-            <h2 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
-              Brand: {selectedProduct.brand}
-            </h2>
-            <img src={selectedProduct.imageUrl} />
-            <br />
-            <h3 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
-              Gender: {selectedProduct.gender}
-            </h3>
-            <h3 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
-              Price: ${selectedProduct.price / 100}
-            </h3>
-            <h3 style={{color: 'black', fontFamily: 'Lemon, curisve'}}>
-              Sizes:{' '}
-              <select>
-                {selectedProduct.size.map((size, idx) => {
-                  return <option key={idx}>{size}</option>
-                })}
-              </select>{' '}
-              <button
-                style={{color: 'black', fontFamily: 'Lemon, curisve'}}
-                type="button"
-                className="button"
-                onClick={() => this.handleClick(selectedProduct)}
-              >
-                Add to Cart
-              </button>
-            </h3>
-          </div>
-          <div className="description">
-            <h3>{selectedProduct.description}</h3>
-          </div>
+          <h1>{selectedProduct.name}</h1>
+          <h2>Brand: {selectedProduct.brand}</h2>
+          <img src={selectedProduct.imageUrl} />
+          <br />
+          <button
+            type="button"
+            className="button"
+            onClick={() => this.handleClick(selectedProduct)}
+          >
+            Add to Cart
+          </button>
+          <h3>Gender: {selectedProduct.gender}</h3>
+          <h3>Sizes: {selectedProduct.size.join(', ')}</h3>
         </div>
       )
     } else {
@@ -81,7 +55,6 @@ class SingleProduct extends Component {
     }
   }
 }
-//{selectedProduct.size.join(', ')}
 //with a sub reducer it goes a level deep
 const productMapStateToProps = state => ({
   userId: state.user.id,
